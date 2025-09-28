@@ -1,0 +1,324 @@
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent scroll jerking on webkit browsers */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Isolate content from background effects */
+.min-h-screen {
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize rendering layers */
+.hero-text-effect,
+.smooth-section,
+.text-reveal,
+.image-reveal {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* From Uiverse.io by Creatlydev */ 
+.button {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: #000;
+}
+
+.button:hover .button__icon-wrapper {
+  color: #000;
+}
+
+.button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+/* Animated Gradient for SHIVA CHOUDHRY */
+.animate-gradient {
+  background: linear-gradient(90deg, #a977c8, #5c7bbb , #63a840 );
+  background-size: 400% 400%;
+  animation: gradientShift 2s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animated Gradient for Full Stack Developer */
+.animate-gradient-fullstack {
+  background: linear-gradient(90deg, #fb923c, #fde047 , #4ad4de );
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-size-400 {
+  background-size: 400% 400%;
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  background: linear-gradient(90deg, #fb923c, #fde047 17%, #4ade80 33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+.typewriter-cursor.visible {
+  opacity: 1;
+}
+
+.typewriter-cursor.invisible {
+  opacity: 0;
+}
+
+/* Animated Gradient for About Me */
+.animate-gradient-about {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6 , #ec4899);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Gradient for Projects */
+.animate-gradient-projects {
+  background: linear-gradient(90deg, #3b82f6 , #8b5cf6 , #ec4899);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Gradient for Get in Touch */
+
+/* Apple-Style Smooth Scrolling Effects */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.smooth-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.smooth-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.parallax-bg {
+  transform: translateY(var(--scroll-offset, 0));
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.scale-on-scroll {
+  transform: scale(var(--scale-factor, 1));
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.fade-on-scroll {
+  opacity: var(--fade-opacity, 1);
+  transition: opacity 0.3s ease-out;
+  will-change: opacity;
+}
+
+.hero-text-effect {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.hero-text-effect.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stagger-animation {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.stagger-animation.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.image-reveal {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.image-reveal.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.floating-effect {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.text-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.text-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-divider {
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.section-divider.visible {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Card Stack Effect */
+.projects-container {
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-stack {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center bottom;
+}
+
+.card-stack.stacked-1 {
+  transform: translateY(-30px) rotate(2deg) scale(0.98);
+  z-index: 20;
+}
+
+.card-stack.stacked-2 {
+  transform: translateY(-60px) rotate(-1.5deg) scale(0.96);
+  z-index: 30;
+}
+
+.card-stack:hover {
+  transform: translateY(0) rotate(0deg) scale(1) !important;
+  z-index: 40 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-stack.stacked-1 {
+    transform: translateY(-20px) rotate(1.5deg) scale(0.98);
+  }
+  
+  .card-stack.stacked-2 {
+    transform: translateY(-40px) rotate(-1deg) scale(0.96);
+  }
+}

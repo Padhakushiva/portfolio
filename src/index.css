@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+
+
+/* Global light/dark backgrounds without @apply (fallback if @apply not processed yet) */
+body {
+  background-color: #ffffff;
+  color: #111827; /* gray-900 */
+  -webkit-font-smoothing: antialiased;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0a0a0a; /* near gray-950 */
+    color: #f1f5f9; /* slate-100-ish */
+  }
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Animated Stars Background */
+.stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  animation: animStar 50s linear infinite;
+  box-shadow: 
+    781px 1327px #fff, 1112px 965px #fff, 1920px 1080px #fff,
+    734px 1896px #fff, 1654px 1998px #fff, 1075px 1344px #fff,
+    1866px 1456px #fff, 1815px 643px #fff, 1146px 1687px #fff,
+    1683px 1013px #fff, 1925px 1208px #fff, 1844px 1264px #fff,
+    970px 1859px #fff, 1669px 798px #fff, 1936px 1149px #fff,
+    1713px 1259px #fff, 1844px 1536px #fff, 1683px 1575px #fff,
+    1960px 1946px #fff, 1978px 1251px #fff, 1583px 1054px #fff,
+    1517px 1724px #fff, 1940px 1446px #fff, 1112px 1805px #fff,
+    1142px 1104px #fff, 1841px 1777px #fff, 1383px 1453px #fff,
+    1683px 1390px #fff, 1961px 1863px #fff, 1815px 1446px #fff;
+}
+
+.stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  animation: animStar 100s linear infinite;
+  box-shadow: 
+    563px 1327px #fff, 912px 965px #fff, 1520px 1080px #fff,
+    534px 1596px #fff, 1254px 1398px #fff, 875px 1144px #fff,
+    1566px 1256px #fff, 1215px 843px #fff, 946px 1587px #fff,
+    1283px 1213px #fff, 1625px 1008px #fff, 1444px 864px #fff,
+    870px 1759px #fff, 1169px 598px #fff, 1336px 949px #fff,
+    1613px 1159px #fff, 1744px 1336px #fff, 1583px 1375px #fff,
+    1860px 1746px #fff, 1678px 951px #fff, 1183px 854px #fff,
+    1217px 1524px #fff, 1340px 1246px #fff, 912px 1605px #fff,
+    942px 904px #fff, 1441px 1577px #fff, 1183px 1253px #fff;
+}
+
+.stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  animation: animStar 150s linear infinite;
+  box-shadow: 
+    463px 1127px #fff, 712px 765px #fff, 1220px 880px #fff,
+    334px 1396px #fff, 954px 1198px #fff, 675px 944px #fff,
+    1266px 1056px #fff, 1015px 643px #fff, 746px 1387px #fff,
+    1083px 1013px #fff, 1425px 808px #fff, 1244px 664px #fff,
+    670px 1559px #fff, 969px 398px #fff, 1136px 749px #fff,
+    1413px 959px #fff, 1544px 1136px #fff, 1383px 1175px #fff;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+/* Tech Stack Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
