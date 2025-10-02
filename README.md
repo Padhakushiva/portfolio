@@ -48,12 +48,56 @@ Get these values from your [EmailJS dashboard](https://www.emailjs.com/).
 npm run build
 ```
 
+## Deploy to Netlify
+
+### Option 1: Deploy via Git (Recommended)
+
+1. Push your code to GitHub
+2. Log in to [Netlify](https://app.netlify.com/)
+3. Click "Add new site" → "Import an existing project"
+4. Connect to your GitHub repository
+5. Configure build settings (auto-detected from `netlify.toml`):
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+6. Add environment variables in Netlify dashboard:
+   - Go to Site settings → Environment variables
+   - Add: `VITE_EMAILJS_PUBLIC_KEY`
+   - Add: `VITE_EMAILJS_SERVICE_ID`
+   - Add: `VITE_EMAILJS_TEMPLATE_ID`
+7. Click "Deploy site"
+
+### Option 2: Deploy via Netlify CLI
+
+```bash
+# Install Netlify CLI globally
+npm install -g netlify-cli
+
+# Login to Netlify
+netlify login
+
+# Deploy to Netlify
+netlify deploy --prod
+```
+
+### Option 3: Drag and Drop
+
+```bash
+# Build your project
+npm run build
+
+# Go to https://app.netlify.com/drop
+# Drag and drop the 'dist' folder
+```
+
+**Note**: For drag-and-drop, you need to manually add environment variables in Netlify dashboard after deployment.
+
 ## Technologies Used
 - React 18
 - Vite
 - Tailwind CSS
 - EmailJS
 - Framer Motion
+- Three.js
 
 ## Contact
 Email: chaudharyshiva2008@gmail.com+ Vite
