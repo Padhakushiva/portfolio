@@ -14,14 +14,14 @@ import docker from "../assets/docker.svg";
 import nodejs from "../assets/Node.js.png";
 import Contact from "./ContactSimple";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+
 import GSAPRayBackground from "./GSAPRayBackground";
 // import Background from "./Background";
 
 // Import the resume PDF from assets
 import resumePDF from "../assets/ResumeShiva.pdf";
 
-import Example from "./card";
+import Example from "./Card";
 import Card2 from "./Card2";
 import {
   FaLinkedinIn,
