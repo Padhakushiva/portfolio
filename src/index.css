@@ -15,6 +15,30 @@ body {
   }
 }
 
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  * {
+    /* Remove will-change on mobile for better memory usage */
+    will-change: auto !important;
+  }
+  
+  /* Use hardware acceleration only where needed */
+  .smooth-section,
+  .image-reveal,
+  .text-reveal {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Disable expensive animations */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 #root { min-height: 100vh; display: flex; flex-direction: column; }
 
 /* Animated Stars Background */

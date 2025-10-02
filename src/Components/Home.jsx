@@ -41,8 +41,24 @@ const Typewriter = ({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000 }) 
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile
+    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+    setIsMobile(mobile);
+    
+    // On mobile, just show first text immediately
+    if (mobile) {
+      setCurrentText(texts[0]);
+      return;
+    }
+  }, [texts]);
+
+  useEffect(() => {
+    if (isMobile) return; // Skip typewriter on mobile
+    
     const fullText = texts[currentTextIndex];
     
     const typeInterval = setInterval(() => {
@@ -67,20 +83,22 @@ const Typewriter = ({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000 }) 
     }, isDeleting ? deleteSpeed : speed);
 
     return () => clearInterval(typeInterval);
-  }, [currentText, isDeleting, currentTextIndex, texts, speed, deleteSpeed, pauseTime]);
+  }, [currentText, isDeleting, currentTextIndex, texts, speed, deleteSpeed, pauseTime, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return; // Skip cursor blinking on mobile
+    
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
-  }, []);
+  }, [isMobile]);
 
   return (
     <span className="animate-gradient-fullstack bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent bg-size-400">
       {currentText}
-      <span className={`typewriter-cursor ${showCursor ? 'visible' : 'invisible'}`}>|</span>
+      {!isMobile && <span className={`typewriter-cursor ${showCursor ? 'visible' : 'invisible'}`}>|</span>}
     </span>
   );
 };
@@ -110,10 +128,27 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // Check if mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+    
     let isScrolling = false;
 
     const handleScroll = () => {
-      // Debounce scroll events to prevent conflicts with background
+      // On mobile, use simpler logic without debouncing
+      if (isMobile) {
+        const windowHeight = window.innerHeight;
+        const elements = document.querySelectorAll('.smooth-section, .image-reveal, .text-reveal, .stagger-animation');
+        elements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < windowHeight * 0.9) {
+            el.classList.add('visible');
+          }
+        });
+        return;
+      }
+      
+      // Desktop: Use optimized debounced scroll
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }

@@ -1,5 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+
+// Detect mobile device
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    || window.innerWidth < 768;
+};
 
 const GSAPRayBackground = ({ 
   rayCount = 150,
@@ -15,10 +21,19 @@ const GSAPRayBackground = ({
   const raysRef = useRef([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if mobile on mount
+    setIsMobile(isMobileDevice());
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    
+    // Skip all animations on mobile
+    if (isMobile) return;
 
     // Clear any existing rays
     container.innerHTML = '';
@@ -199,7 +214,19 @@ const GSAPRayBackground = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [rayCount, rayLength, rayWidth, rayOpacity, raySpeed, mouseInfluence, colors]);
+  }, [rayCount, rayLength, rayWidth, rayOpacity, raySpeed, mouseInfluence, colors, isMobile]);
+
+  // On mobile, return simple gradient background
+  if (isMobile) {
+    return (
+      <div
+        className={`fixed inset-0 pointer-events-none z-0 overflow-hidden ${className}`}
+        style={{
+          background: 'radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(0, 0, 0, 0) 50%)',
+        }}
+      />
+    );
+  }
 
   return (
     <div
