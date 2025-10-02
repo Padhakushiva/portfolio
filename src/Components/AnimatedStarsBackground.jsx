@@ -1,8 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 
+// Detect if device is mobile
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    || window.innerWidth < 768;
+};
+
 const AnimatedStarsBackground = ({ 
-  starCount = 200,
+  starCount = isMobile() ? 50 : 200, // Reduce stars on mobile
   starSizes = [1, 2, 3],
   colors = ['#ffffff', '#e5e7eb', '#d1d5db', '#9ca3af', '#f3f4f6'],
   twinkleSpeed = 0.3,
@@ -92,7 +98,8 @@ const AnimatedStarsBackground = ({
       // Touch tracking removed - no movement effect
     };
 
-    // Animation loop
+    // Animation loop - simplified for mobile
+    const mobile = isMobile();
     let startTime = Date.now();
     const animate = () => {
       const currentTime = Date.now();
@@ -105,22 +112,26 @@ const AnimatedStarsBackground = ({
         const twinkle = Math.sin(elapsed * twinkleSpeed + data.twinkleOffset) * 0.3 + 0.7;
         const opacity = data.baseOpacity * twinkle;
         
-        // Size pulsing
-        const sizePulse = 1 + Math.sin(elapsed * twinkleSpeed * 0.5 + index * 0.1) * 0.2;
+        // Disable size pulsing on mobile for performance
+        const sizePulse = mobile ? 1 : 1 + Math.sin(elapsed * twinkleSpeed * 0.5 + index * 0.1) * 0.2;
         
         // Stars stay at their original positions
         const finalX = data.baseX;
         const finalY = data.baseY;
         
-        // Apply transformations
-        gsap.set(star, {
-          left: `${finalX}%`,
-          top: `${finalY}%`,
-          opacity: Math.max(0, Math.min(1, opacity)),
-          scale: sizePulse,
-          duration: 0.1,
-          ease: "none"
-        });
+        // Apply transformations - use direct style for better performance
+        if (mobile) {
+          star.style.opacity = Math.max(0, Math.min(1, opacity));
+        } else {
+          gsap.set(star, {
+            left: `${finalX}%`,
+            top: `${finalY}%`,
+            opacity: Math.max(0, Math.min(1, opacity)),
+            scale: sizePulse,
+            duration: 0.1,
+            ease: "none"
+          });
+        }
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);

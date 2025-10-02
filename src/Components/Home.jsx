@@ -255,6 +255,8 @@ const Home = () => {
             <img
               src={profilePic}
               alt="Profile"
+              loading="eager"
+              decoding="async"
               className="w-40 h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 rounded-full object-cover border-white shadow-lg hero-text-effect floating-effect"
               style={{ transform: 'translate3d(0,0,0)' }}
             />
@@ -264,7 +266,7 @@ const Home = () => {
           <div className="hero-text-effect entrance-animation" style={{ backfaceVisibility: 'hidden', opacity: 0, transform: 'translateY(30px)' }}>
             <div className="font-mono text-sm lg:text-base border-[0.1px] border-gray-100 p-2 lg:p-3 flex items-center justify-center mt-10 lg:mt-12 rounded-2xl">
               <div>
-                <img src={ping} alt="Ping" className="w-6 h-6 lg:w-7 lg:h-7 inline-block" />
+                <img src={ping} alt="Ping" loading="lazy" className="w-6 h-6 lg:w-7 lg:h-7 inline-block" />
               </div>
               Available for work!
             </div>
@@ -384,43 +386,43 @@ const Home = () => {
           <div className="lg:hidden max-w-4xl mx-auto px-4">
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-y-12 gap-x-6 place-items-center text-white/90">
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Html} alt="HTML5" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Html} alt="HTML5" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">HTML5</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Css} alt="CSS3" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Css} alt="CSS3" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">CSS3</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Sass} alt="Sass" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Sass} alt="Sass" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">Sass</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Tailwind} alt="Tailwind CSS" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Tailwind} alt="Tailwind CSS" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">Tailwind</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Javascript} alt="JavaScript" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Javascript} alt="JavaScript" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">JavaScript</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={ReactLogo} alt="React.js" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={ReactLogo} alt="React.js" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">React.js</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={Typescript} alt="TypeScript" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={Typescript} alt="TypeScript" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">TypeScript</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={mongodb} alt="MongoDB" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={mongodb} alt="MongoDB" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">MongoDB</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={docker} alt="Docker" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={docker} alt="Docker" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">Docker</span>
               </div>
               <div className="group flex flex-col items-center gap-3 w-13 stagger-animation">
-                <img src={nodejs} alt="Node.js" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
+                <img src={nodejs} alt="Node.js" loading="lazy" className="w-12 h-12 group-hover:scale-110 transition-transform image-reveal" />
                 <span className="text-xs uppercase tracking-wide text-white/50 text-reveal">Node.js</span>
               </div>
             </div>

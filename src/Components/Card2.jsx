@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -6,6 +6,12 @@ import {
   useSpring,
 } from "framer-motion";
 import Designer from "../assets/Designer.png";
+
+// Detect mobile device
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    || window.innerWidth < 768;
+};
 
 const card2 = () => {
   return (
@@ -20,17 +26,22 @@ const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
 const TiltCard = () => {
   const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
+  const xSpring = useSpring(x, { stiffness: 100, damping: 20 });
+  const ySpring = useSpring(y, { stiffness: 100, damping: 20 });
 
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  }, []);
+
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
+    if (!ref.current || isMobile) return; // Disable on mobile
 
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
@@ -47,6 +58,7 @@ const TiltCard = () => {
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return; // Disable on mobile
     x.set(0);
     y.set(0);
   };
@@ -56,7 +68,7 @@ const TiltCard = () => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
+      style={isMobile ? {} : {
         transformStyle: "preserve-3d",
         transform,
       }}
@@ -73,8 +85,10 @@ const TiltCard = () => {
         <img
           src={Designer}
           alt="logo"
+          loading="lazy"
+          decoding="async"
           className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain rounded-lg"
-          style={{ transform: "translateZ(56px)" }}
+          style={isMobile ? {} : { transform: "translateZ(56px)" }}
         />
       </div>
 
