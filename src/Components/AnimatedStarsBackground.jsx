@@ -8,7 +8,7 @@ const isMobile = () => {
 };
 
 const AnimatedStarsBackground = ({ 
-  starCount = isMobile() ? 30 : 200, // Even fewer stars on mobile (was 50)
+  starCount = isMobile() ? 50 : 200, // Reduce stars on mobile
   starSizes = [1, 2, 3],
   colors = ['#ffffff', '#e5e7eb', '#d1d5db', '#9ca3af', '#f3f4f6'],
   twinkleSpeed = 0.3,
@@ -21,8 +21,6 @@ const AnimatedStarsBackground = ({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    
-    const mobile = isMobile();
 
     // Clear any existing stars
     container.innerHTML = '';
@@ -101,6 +99,7 @@ const AnimatedStarsBackground = ({
     };
 
     // Animation loop - simplified for mobile
+    const mobile = isMobile();
     let startTime = Date.now();
     const animate = () => {
       const currentTime = Date.now();

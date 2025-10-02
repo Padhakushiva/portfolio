@@ -103,29 +103,6 @@ html {
   }
 }
 
-/* Disable expensive animations on mobile */
-@media (max-width: 768px) {
-  .animate-gradient,
-  .animate-gradient-fullstack,
-  .animate-gradient-about,
-  .animate-gradient-projects {
-    animation: none !important;
-    background: linear-gradient(90deg, #a977c8, #5c7bbb);
-    background-size: 100% 100%;
-  }
-  
-  .smooth-section,
-  .image-reveal,
-  .text-reveal,
-  .stagger-animation {
-    transition-duration: 0.2s !important;
-  }
-  
-  .floating-effect {
-    animation: none !important;
-  }
-}
-
 /* Animated Gradient for Full Stack Developer */
 .animate-gradient-fullstack {
   background: linear-gradient(90deg, #fb923c, #fde047 , #4ad4de );

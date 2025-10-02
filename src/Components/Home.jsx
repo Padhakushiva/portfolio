@@ -41,24 +41,8 @@ const Typewriter = ({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000 }) 
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if mobile
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-      || window.innerWidth < 768;
-    setIsMobile(mobile);
-    
-    // On mobile, just show first text immediately
-    if (mobile) {
-      setCurrentText(texts[0]);
-      return;
-    }
-  }, [texts]);
-
-  useEffect(() => {
-    if (isMobile) return; // Skip typewriter on mobile
-    
     const fullText = texts[currentTextIndex];
     
     const typeInterval = setInterval(() => {
@@ -83,22 +67,20 @@ const Typewriter = ({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000 }) 
     }, isDeleting ? deleteSpeed : speed);
 
     return () => clearInterval(typeInterval);
-  }, [currentText, isDeleting, currentTextIndex, texts, speed, deleteSpeed, pauseTime, isMobile]);
+  }, [currentText, isDeleting, currentTextIndex, texts, speed, deleteSpeed, pauseTime]);
 
   useEffect(() => {
-    if (isMobile) return; // Skip cursor blinking on mobile
-    
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
-  }, [isMobile]);
+  }, []);
 
   return (
     <span className="animate-gradient-fullstack bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent bg-size-400">
       {currentText}
-      {!isMobile && <span className={`typewriter-cursor ${showCursor ? 'visible' : 'invisible'}`}>|</span>}
+      <span className={`typewriter-cursor ${showCursor ? 'visible' : 'invisible'}`}>|</span>
     </span>
   );
 };
@@ -128,27 +110,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // Check if mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-      || window.innerWidth < 768;
-    
     let isScrolling = false;
 
     const handleScroll = () => {
-      // On mobile, use simpler logic without debouncing
-      if (isMobile) {
-        const windowHeight = window.innerHeight;
-        const elements = document.querySelectorAll('.smooth-section, .image-reveal, .text-reveal, .stagger-animation');
-        elements.forEach((el) => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < windowHeight * 0.9) {
-            el.classList.add('visible');
-          }
-        });
-        return;
-      }
-      
-      // Desktop: Use optimized debounced scroll
+      // Debounce scroll events to prevent conflicts with background
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -284,7 +249,7 @@ const Home = () => {
           className="absolute inset-0"
         />
         
-        <div className="pt-40 px-4 xl:px-8 w-full max-w-7xl mx-auto flex flex-col items-center relative z-10" style={{ transform: 'translateZ(0)' }}>
+        <div className="pt-40 px-4 xl:px-8 w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center relative z-10" style={{ transform: 'translateZ(0)' }}>
           {/* Profile Image */}
           <div className="hero-text-effect entrance-animation" style={{ backfaceVisibility: 'hidden', opacity: 0, transform: 'translateY(30px)' }}>
             <img
@@ -612,7 +577,7 @@ const Home = () => {
         </div>
 
         {/* Project Cards */}
-        <div className="flex flex-col lg:flex-row lg:justify-center lg:items-start w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl px-4 lg:px-8 xl:px-12 gap-10 lg:gap-12 xl:gap-16 2xl:gap-20 mb-10 lg:mb-16 xl:mb-20 mt-16 lg:mt-20 xl:mt-24 projects-container smooth-section">
+        <div className="flex flex-col lg:flex-row lg:justify-center lg:items-start w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto px-4 lg:px-8 xl:px-12 gap-10 lg:gap-12 xl:gap-16 2xl:gap-20 mb-10 lg:mb-16 xl:mb-20 mt-16 lg:mt-20 xl:mt-24 projects-container smooth-section">
           <div className="hero-text-effect floating-effect smooth-section flex-1 lg:max-w-[48%] xl:max-w-[45%]">
             <Example />
           </div>

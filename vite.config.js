@@ -14,7 +14,6 @@ export default defineConfig({
         manualChunks: {
           // Split vendor code
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/rapier'],
           'animation-vendor': ['framer-motion', 'gsap'],
           'icons': ['react-icons'],
         },
@@ -35,6 +34,5 @@ export default defineConfig({
   // Optimize dependencies
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
-    exclude: ['@react-three/fiber', '@react-three/drei'], // Lazy load heavy 3D libraries
   },
 })
