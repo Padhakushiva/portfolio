@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Hide navbar when gallery is open */
+body.gallery-open nav {
+  display: none !important;
+}
+
 /* Desktop Zoom Control - Even more aggressive zoom out */
 @media screen and (min-width: 1024px) {
   html {
