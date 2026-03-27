@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // Import the resume PDF from assets
-import resumePDF from "../assets/ResumeShiva.pdf";
+import resumePDF from "../assets/Shiva_CV_t.pdf";
 const scrollToSection = (id) => {
   const element = document.getElementById(id);
   if (element) {

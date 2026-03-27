@@ -19,7 +19,7 @@ import GSAPRayBackground from "./GSAPRayBackground";
 // import Background from "./Background";
 
 // Import the resume PDF from assets
-import resumePDF from "../assets/ResumeShiva.pdf";
+import resumePDF from "../assets/Shiva_CV_t.pdf";
 import sheryiansJobReadyCertificate from "../assets/Sheryians coading (1)_page-0001.jpg";
 import infosysNoCodeCertificate from "../assets/1-890c1668-edd8-4c14-8c1b-9e3674f7e1fd (1)_page-0001.jpg";
 import infosysPromptCertificate from "../assets/Prompt Engineering_page-0001.jpg";
